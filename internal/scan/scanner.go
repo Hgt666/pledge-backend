@@ -4,9 +4,9 @@ import (
 	"context"
 	"easy-swap/config"
 	"easy-swap/internal/parser"
+	"easy-swap/logger"
 	"easy-swap/model"
 	"easy-swap/service"
-	"log"
 	"math/big"
 	"os"
 	"os/signal"
@@ -17,6 +17,7 @@ import (
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/core/types"
 	"github.com/ethereum/go-ethereum/ethclient"
+	"go.uber.org/zap"
 )
 
 // 全局扫链实例
@@ -66,7 +67,7 @@ func NewScanner() (*Scanner, error) {
 
 // Start 启动定时扫链
 func (s *Scanner) Start() {
-	log.Printf("✅ 扫链服务启动，当前扫描区块高度：%d", s.lastBlock)
+	logger.Log.Info("✅ 扫链服务启动",zap.Uint64("block",s.lastBlock))
 	ticker := time.NewTicker(time.Duration(config.GlobalConfig.Chain.ScanInterval) * time.Second)
 	defer ticker.Stop()
 
@@ -82,13 +83,14 @@ func (s *Scanner) Start() {
 			// 每3秒执行一次
 			_ = s.handleForkRollback()
 			if err := s.scanBlockLoop(); err != nil {
-				log.Println("❌ 扫描异常，重连RPC")
+				logger.Log.Error("❌ 扫描异常，重连RPC",zap.Error(err))
 				_ = s.reconnectRPC()
 			}
 
 		case <-quit:
 			// 优雅退出（企业必须有）
-			log.Println("🛑 扫链服务停止")
+			// log.Println("🛑 扫链服务停止")
+			logger.Log.Warn("🛑 扫链服务停止")
 			return
 		}
 	}
@@ -137,7 +139,8 @@ func (s *Scanner) handleForkRollback() error {
 	// 本地高度大于链上高度，说明出现区块分叉
 	if s.lastBlock > latestOnChain {
 		rollbackPoint := latestOnChain - config.GlobalConfig.Chain.SafeBlock
-		log.Printf("⚠️ 检测到链分叉，数据回滚至区块：%d", rollbackPoint)
+		// log.Printf("⚠️ 检测到链分叉，数据回滚至区块：%d", rollbackPoint)
+		logger.Log.Warn("⚠️ 检测到链分叉，数据回滚至区块:",zap.Uint64("rollback",rollbackPoint))
 
 		// 业务层回滚数据
 		_ = nftSvc.RollbackByBlock(rollbackPoint)
@@ -158,7 +161,7 @@ func (s *Scanner) ReScan(step uint64) {
 		s.lastBlock -= step
 	}
 	scanSvc.SaveLastBlock(s.lastBlock)
-	log.Printf("🔄 手动回溯成功，当前扫描起始区块：%d", s.lastBlock)
+	logger.Log.Info("🔄 手动回溯成功，当前扫描起始区块：%d",zap.Uint64("lastBlock",s.lastBlock))
 }
 
 // dispatchEvent 事件分发器
@@ -216,6 +219,6 @@ func (s *Scanner) reconnectRPC() error {
 		return err
 	}
 	s.client = client
-	log.Println("✅ RPC节点重连成功")
+	logger.Log.Info("✅ RPC节点重连成功")
 	return nil
 }
