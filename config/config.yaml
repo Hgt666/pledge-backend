@@ -1,0 +1,15 @@
+app:
+  name: easy-swap-nft-market
+  port: 8080
+
+mysql:
+  dsn: "root:123456@tcp(127.0.0.1:3306)/easyswap?charset=utf8mb4&parseTime=True&loc=Local"
+
+chain:
+  rpc: "https://bsc-dataseed1.binance.org"
+  safe_block: 6
+  scan_interval: 3
+
+contract:
+  nft: "0x0000000000000000000000000000000000000000"
+  market: "0x0000000000000000000000000000000000000000"
