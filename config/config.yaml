@@ -3,13 +3,13 @@ app:
   port: 8080
 
 mysql:
-  dsn: "root:123456@tcp(127.0.0.1:3306)/easyswap?charset=utf8mb4&parseTime=True&loc=Local"
+  dsn: "easyuser:easypasswd@tcp(127.0.0.1:3307)/nftMarket?charset=utf8mb4&parseTime=True&loc=Local"
 
 chain:
-  rpc: "https://bsc-dataseed1.binance.org"
+  rpc: "https://eth-sepolia.g.alchemy.com/v2/qYzNDoA70IIpPivi7CKE3"
   safe_block: 6
   scan_interval: 3
 
 contract:
-  nft: "0x0000000000000000000000000000000000000000"
-  market: "0x0000000000000000000000000000000000000000"
+  nft: "0xC25E680C1480533FE69eAc43A8cF98c0a339eEaf"
+  market: "0xcEE5AA84032D4a53a0F9d2c33F36701c3eAD5895"

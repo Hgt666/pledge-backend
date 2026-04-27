@@ -16,7 +16,28 @@ var (
 // Init 初始化abi解析器
 func Init() error {
 	// NFT Transfer事件ABI
-	nftABI := `[{"anonymous":false,"inputs":[{"indexed":true,"name":"from","type":"address"},{"indexed":true,"name":"to","type":"address"},{"indexed":false,"name":"tokenId","type":"uint256"}],"name":"Transfer","type":"event"}]`
+	nftABI := `[    {
+		"anonymous": false,
+		"inputs": [
+		  {
+			"indexed": true,
+			"name": "from",
+			"type": "address"
+		  },
+		  {
+			"indexed": true,
+			"name": "to",
+			"type": "address"
+		  },
+		  {
+			"indexed": true,
+			"name": "tokenId",
+			"type": "uint256"
+		  }
+		],
+		"name": "Transfer",
+		"type": "event"
+	  }]`
 	parsedNFT, err := abi.JSON(strings.NewReader(nftABI))
 	if err != nil {
 		return err
@@ -24,11 +45,202 @@ func Init() error {
 	nftAbi = parsedNFT
 
 	// 市场订单事件ABI
-	marketABI := `[
-	{"anonymous":false,"inputs":[{"indexed":true,"name":"seller","type":"address"},{"indexed":false,"name":"orderId","type":"uint256"},{"indexed":false,"name":"tokenId","type":"uint256"},{"indexed":false,"name":"price","type":"uint256"}],"name":"OrderCreated","type":"event"},
-	{"anonymous":false,"inputs":[{"indexed":false,"name":"orderId","type":"uint256"}],"name":"OrderCancelled","type":"event"},
-	{"anonymous":false,"inputs":[{"indexed":false,"name":"orderId","type":"uint256"},{"indexed":true,"name":"buyer","type":"address"}],"name":"OrderFilled","type":"event"}
-]`
+	marketABI := `[{
+		"anonymous": false,
+		"inputs": [
+		  {
+			"indexed": false,
+			"name": "orderKey",
+			"type": "bytes32"
+		  },
+		  {
+			"indexed": true,
+			"name": "side",
+			"type": "uint8"
+		  },
+		  {
+			"indexed": true,
+			"name": "saleKind",
+			"type": "uint8"
+		  },
+		  {
+			"indexed": true,
+			"name": "maker",
+			"type": "address"
+		  },
+		  {
+			"components": [
+			  {
+				"name": "tokenId",
+				"type": "uint256"
+			  },
+			  {
+				"name": "collection",
+				"type": "address"
+			  },
+			  {
+				"name": "amount",
+				"type": "uint96"
+			  }
+			],
+			"indexed": false,
+			"name": "nft",
+			"type": "tuple"
+		  },
+		  {
+			"indexed": false,
+			"name": "price",
+			"type": "uint128"
+		  },
+		  {
+			"indexed": false,
+			"name": "expiry",
+			"type": "uint64"
+		  },
+		  {
+			"indexed": false,
+			"name": "salt",
+			"type": "uint64"
+		  }
+		],
+		"name": "LogMake",
+		"type": "event"
+	  }, {
+		"anonymous": false,
+		"inputs": [
+		  {
+			"indexed": true,
+			"name": "orderKey",
+			"type": "bytes32"
+		  },
+		  {
+			"indexed": true,
+			"name": "maker",
+			"type": "address"
+		  }
+		],
+		"name": "LogCancel",
+		"type": "event"
+	  },  {
+		"anonymous": false,
+		"inputs": [
+		  {
+			"indexed": true,
+			"name": "makeOrderKey",
+			"type": "bytes32"
+		  },
+		  {
+			"indexed": true,
+			"name": "takeOrderKey",
+			"type": "bytes32"
+		  },
+		  {
+			"components": [
+			  {
+				"name": "side",
+				"type": "uint8"
+			  },
+			  {
+				"name": "saleKind",
+				"type": "uint8"
+			  },
+			  {
+				"name": "maker",
+				"type": "address"
+			  },
+			  {
+				"components": [
+				  {
+					"name": "tokenId",
+					"type": "uint256"
+				  },
+				  {
+					"name": "collection",
+					"type": "address"
+				  },
+				  {
+					"name": "amount",
+					"type": "uint96"
+				  }
+				],
+				"name": "nft",
+				"type": "tuple"
+			  },
+			  {
+				"name": "price",
+				"type": "uint128"
+			  },
+			  {
+				"name": "expiry",
+				"type": "uint64"
+			  },
+			  {
+				"name": "salt",
+				"type": "uint64"
+			  }
+			],
+			"indexed": false,
+			"name": "makeOrder",
+			"type": "tuple"
+		  },
+		  {
+			"components": [
+			  {
+				"name": "side",
+				"type": "uint8"
+			  },
+			  {
+				"name": "saleKind",
+				"type": "uint8"
+			  },
+			  {
+				"name": "maker",
+				"type": "address"
+			  },
+			  {
+				"components": [
+				  {
+					"name": "tokenId",
+					"type": "uint256"
+				  },
+				  {
+					"name": "collection",
+					"type": "address"
+				  },
+				  {
+					"name": "amount",
+					"type": "uint96"
+				  }
+				],
+				"name": "nft",
+				"type": "tuple"
+			  },
+			  {
+				"name": "price",
+				"type": "uint128"
+			  },
+			  {
+				"name": "expiry",
+				"type": "uint64"
+			  },
+			  {
+				"name": "salt",
+				"type": "uint64"
+			  }
+			],
+			"indexed": false,
+			"name": "takeOrder",
+			"type": "tuple"
+		  },
+		  {
+			"indexed": false,
+			"name": "fillPrice",
+			"type": "uint128"
+		  }
+		],
+		"name": "LogMatch",
+		"type": "event"
+	  }]`
 	parsedMarket, err := abi.JSON(strings.NewReader(marketABI))
 	if err != nil {
 		return err
