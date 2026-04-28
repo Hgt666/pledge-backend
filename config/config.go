@@ -1,9 +1,10 @@
 package config
 
 import (
+	"log"
+
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/spf13/viper"
-	"log"
 )
 
 // 全局配置结构体
@@ -45,7 +46,7 @@ var (
 func InitViper() {
 	viper.SetConfigName("config")
 	viper.SetConfigType("yaml")
-	viper.AddConfigPath("./config")
+	viper.AddConfigPath("../../config")
 
 	// 读取配置文件
 	if err := viper.ReadInConfig(); err != nil {

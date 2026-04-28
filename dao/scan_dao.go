@@ -17,7 +17,7 @@ func (d *ScanDao) InitRecord() error {
 	var count int64
 	dal.DB.Model(&model.ScanHeight{}).Count(&count)
 	if count == 0 {
-		return dal.DB.Create(&model.ScanHeight{LastBlock: 0}).Error
+		return dal.DB.Create(&model.ScanHeight{LastBlock: 8923483}).Error
 	}
 	return nil
 }

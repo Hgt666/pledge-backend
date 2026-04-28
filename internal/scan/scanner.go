@@ -7,6 +7,7 @@ import (
 	"easy-swap/logger"
 	"easy-swap/model"
 	"easy-swap/service"
+	"fmt"
 	"math/big"
 	"os"
 	"os/signal"
@@ -32,10 +33,10 @@ var (
 
 // 事件签名常量
 const (
-	TransferSig       = "0xddf252ad1be2c89b69c2b068fc378daa952fdfc71349660f863f565bd9dd65ea"
-	OrderCreatedSig   = "0x268147b4b452e5d403481561b3753894a42599d223ed98b08a31a280f51c3f63"
-	OrderCancelledSig = "0x6827080552e25c0d3f723d4333c35e96f96cf16da88c07b49385f257d0163b07"
-	OrderFilledSig    = "0x5c9f016c326a71d025b94f11a398a0f9b4c125489783f03b22a3148c6ed42705"
+	TransferSig       = "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef"
+	OrderCreatedSig   = "0xfc37f2ff950f95913eb7182357ba3c14df60ef354bc7d6ab1ba2815f249fffe6"
+	OrderCancelledSig = "0x0ac8bb53fac566d7afc05d8b4df11d7690a7b27bdc40b54e4060f9b21fb849bd"
+	OrderFilledSig    = "0xf629aecab94607bc43ce4aebd564bf6e61c7327226a797b002de724b9944b20e"
 )
 
 // Scanner 扫链服务结构体
@@ -68,7 +69,9 @@ func NewScanner() (*Scanner, error) {
 // Start 启动定时扫链
 func (s *Scanner) Start() {
 	logger.Log.Info("✅ 扫链服务启动",zap.Uint64("block",s.lastBlock))
-	ticker := time.NewTicker(time.Duration(config.GlobalConfig.Chain.ScanInterval) * time.Second)
+	// ticker := time.NewTicker(time.Duration(config.GlobalConfig.Chain.ScanInterval) * time.Second)
+	interval := time.Second * 3
+	ticker := time.NewTicker(interval)
 	defer ticker.Stop()
 
 	// 监听系统退出信号（企业必备）
@@ -103,15 +106,17 @@ func (s *Scanner) scanBlockLoop() error {
 	if err != nil {
 		return err
 	}
-	if s.lastBlock >= latestBlock {
-		return nil
+	// 🔥 修复：免费RPC限制，每次最多扫 5 个区块
+	toBlock := s.lastBlock + 5
+	if toBlock > latestBlock {
+		toBlock = latestBlock
 	}
 
 	// 批量查询区块日志
 	logs, err := s.client.FilterLogs(ctx, ethereum.FilterQuery{
 		Addresses: s.contracts,
 		FromBlock: big.NewInt(int64(s.lastBlock + 1)),
-		ToBlock:   big.NewInt(int64(latestBlock)),
+		ToBlock:   big.NewInt(int64(toBlock)),
 	})
 	if err != nil {
 		return err
@@ -167,6 +172,7 @@ func (s *Scanner) ReScan(step uint64) {
 // dispatchEvent 事件分发器
 func (s *Scanner) dispatchEvent(log *types.Log) {
 	sig := log.Topics[0].Hex()
+	fmt.Printf("sig:%s\n",sig)
 	switch sig {
 	case TransferSig:
 		ev, err := parser.ParseTransfer(log)

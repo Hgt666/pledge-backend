@@ -16,6 +16,7 @@ func Register(r *gin.Engine) {
 
 	apiGroup := r.Group("/api")
 	{
+		apiGroup.GET("/ping",api.Ping)
 		apiGroup.GET("/nft/transfers", api.GetNftTransfers)
 		apiGroup.GET("/nft/info", api.GetNFTInfo)
 		apiGroup.GET("/nft/owner", api.GetNFTOwner)
