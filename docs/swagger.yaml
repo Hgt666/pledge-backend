@@ -1,0 +1,31 @@
+basePath: /api/v1
+host: localhost:8080
+info:
+  contact:
+    email: support@swagger.io
+    name: API Support
+    url: http://www.swagger.io/support
+  description: NFT 交易平台接口文档
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: NFT Market API
+  version: "1.0"
+paths:
+  /order/list:
+    get:
+      consumes:
+      - application/json
+      description: 返回所有 NFT 数据
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"code":200,"data":[],"msg":"success"}'
+          schema:
+            type: string
+      summary: 获取 NFT 列表
+      tags:
+      - NFT
+swagger: "2.0"
