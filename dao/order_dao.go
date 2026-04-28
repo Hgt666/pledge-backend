@@ -38,7 +38,7 @@ func (d *OrderDao) UpdateStatus(orderId string, status uint8) error {
 func (d *OrderDao) ListOnSale() ([]model.MarketOrder, error) {
 	var list []model.MarketOrder
 	err := dal.DB.
-		Where("status = 0").
+		Where("order_status = 0").
 		Order("id DESC").
 		Find(&list).Error
 	return list, err

@@ -1,3 +1,8 @@
 {"level":"info","time":"2026-04-28T09:38:40.804+0800","caller":"api/main.go:24","msg":"API服务启动","port":":8087"}
 {"level":"info","time":"2026-04-28T09:38:54.230+0800","caller":"api/main.go:24","msg":"API服务启动","port":":8088"}
 {"level":"info","time":"2026-04-28T09:39:15.512+0800","caller":"middleware/middleware.go:41","msg":"request","method":"GET","path":"/api/ping","status":200,"ip":"::1","cost":0.000061847}
+{"level":"info","time":"2026-04-28T16:01:30.268+0800","caller":"middleware/middleware.go:41","msg":"request","method":"GET","path":"/api/order/list","status":200,"ip":"::1","cost":0.00604332}
+{"level":"info","time":"2026-04-28T16:02:39.831+0800","caller":"api/main.go:24","msg":"API服务启动","port":":8088"}
+{"level":"info","time":"2026-04-28T16:02:44.436+0800","caller":"middleware/middleware.go:41","msg":"request","method":"GET","path":"/api/order/list","status":200,"ip":"::1","cost":0.022014271}
+{"level":"info","time":"2026-04-28T16:03:12.332+0800","caller":"middleware/middleware.go:41","msg":"request","method":"GET","path":"/api/order/list","status":200,"ip":"::1","cost":0.005058837}
+{"level":"info","time":"2026-04-28T16:03:14.552+0800","caller":"middleware/middleware.go:41","msg":"request","method":"GET","path":"/favicon.ico","status":404,"ip":"::1","cost":0.000017447}
