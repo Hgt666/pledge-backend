@@ -1,0 +1,59 @@
+version: '3.8'
+
+services:
+  # ======================
+  # API 服务（独立运行）
+  # ======================
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql
+    environment:
+      - GIN_MODE=release
+      - DB_HOST=mysql
+      - DB_PORT=3306
+      - DB_USER=easyuser
+      - DB_PASSWORD=easypassword
+      - DB_NAME=test
+    restart: always
+
+  # ======================
+  # 扫链服务（完全独立）
+  # ======================
+  scanner:
+    build:
+      context: .
+      dockerfile: Dockerfile.scanner
+    environment:
+      - DB_HOST=mysql
+      - DB_PORT=3306
+      - DB_USER=easyuser
+      - DB_PASSWORD=easypassword
+      - DB_NAME=test
+      - ETH_RPC_URL=https://mainnet.infura.io/v3/你的InfuraKey
+      - NFT_CONTRACT=0x你的NFT合约地址
+      - START_BLOCK=20000000
+    restart: always
+
+  # ======================
+  # 数据库（共用）
+  # ======================
+  mysql:
+    image: mysql:8.0
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=root123456
+      - MYSQL_DATABASE=test
+      - MYSQL_USER=easyuser
+      - MYSQL_PASSWORD=easypassword
+    volumes:
+      - mysql_data:/var/lib/mysql
+    restart: always
+
+volumes:
+  mysql_data:
