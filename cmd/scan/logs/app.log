@@ -1,0 +1,213 @@
+{"level":"info","time":"2026-04-28T09:55:24.139+0800","caller":"scan/scanner.go:71","msg":"✅ 扫链服务启动","block":10746161}
+{"level":"info","time":"2026-04-28T09:56:03.004+0800","caller":"scan/main.go:38","msg":"扫链服务退出"}
+{"level":"warn","time":"2026-04-28T09:56:03.004+0800","caller":"scan/scanner.go:94","msg":"🛑 扫链服务停止"}
+{"level":"info","time":"2026-04-28T09:56:07.621+0800","caller":"scan/scanner.go:71","msg":"✅ 扫链服务启动","block":10746235}
+{"level":"info","time":"2026-04-28T09:56:28.940+0800","caller":"scan/main.go:38","msg":"扫链服务退出"}
+{"level":"info","time":"2026-04-28T09:56:47.205+0800","caller":"scan/scanner.go:71","msg":"✅ 扫链服务启动","block":10746237}
+{"level":"warn","time":"2026-04-28T09:56:58.355+0800","caller":"scan/scanner.go:94","msg":"🛑 扫链服务停止"}
+{"level":"info","time":"2026-04-28T09:56:58.356+0800","caller":"scan/main.go:38","msg":"扫链服务退出"}
+{"level":"info","time":"2026-04-28T09:58:31.964+0800","caller":"scan/scanner.go:71","msg":"✅ 扫链服务启动","block":10746239}
+{"level":"info","time":"2026-04-28T09:58:52.221+0800","caller":"scan/main.go:38","msg":"扫链服务退出"}
+{"level":"warn","time":"2026-04-28T09:58:52.222+0800","caller":"scan/scanner.go:94","msg":"🛑 扫链服务停止"}
+{"level":"info","time":"2026-04-28T10:00:12.160+0800","caller":"scan/scanner.go:71","msg":"✅ 扫链服务启动","block":10746248}
+{"level":"info","time":"2026-04-28T10:00:39.478+0800","caller":"scan/main.go:38","msg":"扫链服务退出"}
+{"level":"info","time":"2026-04-28T10:02:12.120+0800","caller":"scan/scanner.go:71","msg":"✅ 扫链服务启动","block":10746255}
+{"level":"warn","time":"2026-04-28T10:02:22.652+0800","caller":"scan/scanner.go:94","msg":"🛑 扫链服务停止"}
+{"level":"info","time":"2026-04-28T10:02:22.652+0800","caller":"scan/main.go:38","msg":"扫链服务退出"}
+{"level":"info","time":"2026-04-28T10:04:12.285+0800","caller":"scan/scanner.go:71","msg":"✅ 扫链服务启动","block":10746264}
+{"level":"warn","time":"2026-04-28T10:04:20.075+0800","caller":"scan/scanner.go:94","msg":"🛑 扫链服务停止"}
+{"level":"info","time":"2026-04-28T10:04:20.075+0800","caller":"scan/main.go:38","msg":"扫链服务退出"}
+{"level":"info","time":"2026-04-28T10:05:22.200+0800","caller":"scan/scanner.go:71","msg":"✅ 扫链服务启动","block":8923483}
+{"level":"warn","time":"2026-04-28T10:05:41.980+0800","caller":"scan/scanner.go:94","msg":"🛑 扫链服务停止"}
+{"level":"info","time":"2026-04-28T10:05:41.980+0800","caller":"scan/main.go:38","msg":"扫链服务退出"}
+{"level":"info","time":"2026-04-28T10:10:27.113+0800","caller":"scan/scanner.go:71","msg":"✅ 扫链服务启动","block":8923483}
+{"level":"error","time":"2026-04-28T10:10:34.245+0800","caller":"scan/scanner.go:87","msg":"❌ 扫描异常，重连RPC","error":"400 Bad Request: {\"jsonrpc\":\"2.0\",\"id\":6,\"error\":{\"code\":-32600,\"message\":\"Under the Free tier plan, you can make eth_getLogs requests with up to a 10 block range. Based on your parameters, this block range should work: [0x8d90cc, 0x8d90d5]. Upgrade to PAYG for expanded block range.\"}}","stack":"easy-swap/internal/scan.(*Scanner).Start\n\t/Users/htt/web3/项目模板/ProjectDemo/internal/scan/scanner.go:87"}
+{"level":"info","time":"2026-04-28T10:10:34.245+0800","caller":"scan/scanner.go:232","msg":"✅ RPC节点重连成功"}
+{"level":"error","time":"2026-04-28T10:10:36.825+0800","caller":"scan/scanner.go:87","msg":"❌ 扫描异常，重连RPC","error":"400 Bad Request: {\"jsonrpc\":\"2.0\",\"id\":3,\"error\":{\"code\":-32600,\"message\":\"Under the Free tier plan, you can make eth_getLogs requests with up to a 10 block range. Based on your parameters, this block range should work: [0x8d90cc, 0x8d90d5]. Upgrade to PAYG for expanded block range.\"}}","stack":"easy-swap/internal/scan.(*Scanner).Start\n\t/Users/htt/web3/项目模板/ProjectDemo/internal/scan/scanner.go:87"}
+{"level":"info","time":"2026-04-28T10:10:36.825+0800","caller":"scan/scanner.go:232","msg":"✅ RPC节点重连成功"}
+{"level":"error","time":"2026-04-28T10:10:40.305+0800","caller":"scan/scanner.go:87","msg":"❌ 扫描异常，重连RPC","error":"400 Bad Request: {\"jsonrpc\":\"2.0\",\"id\":3,\"error\":{\"code\":-32600,\"message\":\"Under the Free tier plan, you can make eth_getLogs requests with up to a 10 block range. Based on your parameters, this block range should work: [0x8d90cc, 0x8d90d5]. Upgrade to PAYG for expanded block range.\"}}","stack":"easy-swap/internal/scan.(*Scanner).Start\n\t/Users/htt/web3/项目模板/ProjectDemo/internal/scan/scanner.go:87"}
+{"level":"info","time":"2026-04-28T10:10:40.305+0800","caller":"scan/scanner.go:232","msg":"✅ RPC节点重连成功"}
+{"level":"error","time":"2026-04-28T10:10:42.825+0800","caller":"scan/scanner.go:87","msg":"❌ 扫描异常，重连RPC","error":"400 Bad Request: {\"jsonrpc\":\"2.0\",\"id\":3,\"error\":{\"code\":-32600,\"message\":\"Under the Free tier plan, you can make eth_getLogs requests with up to a 10 block range. Based on your parameters, this block range should work: [0x8d90cc, 0x8d90d5]. Upgrade to PAYG for expanded block range.\"}}","stack":"easy-swap/internal/scan.(*Scanner).Start\n\t/Users/htt/web3/项目模板/ProjectDemo/internal/scan/scanner.go:87"}
+{"level":"info","time":"2026-04-28T10:10:42.825+0800","caller":"scan/scanner.go:232","msg":"✅ RPC节点重连成功"}
+{"level":"warn","time":"2026-04-28T10:10:44.940+0800","caller":"scan/scanner.go:94","msg":"🛑 扫链服务停止"}
+{"level":"info","time":"2026-04-28T10:10:44.940+0800","caller":"scan/main.go:38","msg":"扫链服务退出"}
+{"level":"info","time":"2026-04-28T10:11:21.251+0800","caller":"scan/scanner.go:71","msg":"✅ 扫链服务启动","block":8923483}
+{"level":"error","time":"2026-04-28T10:11:25.685+0800","caller":"scan/scanner.go:87","msg":"❌ 扫描异常，重连RPC","error":"400 Bad Request: {\"jsonrpc\":\"2.0\",\"id\":3,\"error\":{\"code\":-32600,\"message\":\"Under the Free tier plan, you can make eth_getLogs requests with up to a 10 block range. Based on your parameters, this block range should work: [0x8d90cc, 0x8d90d5]. Upgrade to PAYG for expanded block range.\"}}","stack":"easy-swap/internal/scan.(*Scanner).Start\n\t/Users/htt/web3/项目模板/ProjectDemo/internal/scan/scanner.go:87"}
+{"level":"info","time":"2026-04-28T10:11:25.686+0800","caller":"scan/scanner.go:232","msg":"✅ RPC节点重连成功"}
+{"level":"error","time":"2026-04-28T10:11:27.965+0800","caller":"scan/scanner.go:87","msg":"❌ 扫描异常，重连RPC","error":"400 Bad Request: {\"jsonrpc\":\"2.0\",\"id\":3,\"error\":{\"code\":-32600,\"message\":\"Under the Free tier plan, you can make eth_getLogs requests with up to a 10 block range. Based on your parameters, this block range should work: [0x8d90cc, 0x8d90d5]. Upgrade to PAYG for expanded block range.\"}}","stack":"easy-swap/internal/scan.(*Scanner).Start\n\t/Users/htt/web3/项目模板/ProjectDemo/internal/scan/scanner.go:87"}
+{"level":"info","time":"2026-04-28T10:11:27.966+0800","caller":"scan/scanner.go:232","msg":"✅ RPC节点重连成功"}
+{"level":"info","time":"2026-04-28T10:11:30.043+0800","caller":"scan/main.go:38","msg":"扫链服务退出"}
+{"level":"warn","time":"2026-04-28T10:11:30.043+0800","caller":"scan/scanner.go:94","msg":"🛑 扫链服务停止"}
+{"level":"info","time":"2026-04-28T10:23:49.314+0800","caller":"scan/scanner.go:71","msg":"✅ 扫链服务启动","block":8923483}
+{"level":"error","time":"2026-04-28T10:23:54.770+0800","caller":"scan/scanner.go:87","msg":"❌ 扫描异常，重连RPC","error":"400 Bad Request: {\"jsonrpc\":\"2.0\",\"id\":3,\"error\":{\"code\":-32600,\"message\":\"Under the Free tier plan, you can make eth_getLogs requests with up to a 10 block range. Based on your parameters, this block range should work: [0x8d90cc, 0x8d90d5]. Upgrade to PAYG for expanded block range.\"}}","stack":"easy-swap/internal/scan.(*Scanner).Start\n\t/Users/htt/web3/项目模板/ProjectDemo/internal/scan/scanner.go:87"}
+{"level":"info","time":"2026-04-28T10:23:54.771+0800","caller":"scan/scanner.go:233","msg":"✅ RPC节点重连成功"}
+{"level":"error","time":"2026-04-28T10:23:56.062+0800","caller":"scan/scanner.go:87","msg":"❌ 扫描异常，重连RPC","error":"400 Bad Request: {\"jsonrpc\":\"2.0\",\"id\":3,\"error\":{\"code\":-32600,\"message\":\"Under the Free tier plan, you can make eth_getLogs requests with up to a 10 block range. Based on your parameters, this block range should work: [0x8d90cc, 0x8d90d5]. Upgrade to PAYG for expanded block range.\"}}","stack":"easy-swap/internal/scan.(*Scanner).Start\n\t/Users/htt/web3/项目模板/ProjectDemo/internal/scan/scanner.go:87"}
+{"level":"info","time":"2026-04-28T10:23:56.062+0800","caller":"scan/scanner.go:233","msg":"✅ RPC节点重连成功"}
+{"level":"error","time":"2026-04-28T10:23:59.210+0800","caller":"scan/scanner.go:87","msg":"❌ 扫描异常，重连RPC","error":"400 Bad Request: {\"jsonrpc\":\"2.0\",\"id\":3,\"error\":{\"code\":-32600,\"message\":\"Under the Free tier plan, you can make eth_getLogs requests with up to a 10 block range. Based on your parameters, this block range should work: [0x8d90cc, 0x8d90d5]. Upgrade to PAYG for expanded block range.\"}}","stack":"easy-swap/internal/scan.(*Scanner).Start\n\t/Users/htt/web3/项目模板/ProjectDemo/internal/scan/scanner.go:87"}
+{"level":"info","time":"2026-04-28T10:23:59.211+0800","caller":"scan/scanner.go:233","msg":"✅ RPC节点重连成功"}
+{"level":"error","time":"2026-04-28T10:24:02.553+0800","caller":"scan/scanner.go:87","msg":"❌ 扫描异常，重连RPC","error":"400 Bad Request: {\"jsonrpc\":\"2.0\",\"id\":3,\"error\":{\"code\":-32600,\"message\":\"Under the Free tier plan, you can make eth_getLogs requests with up to a 10 block range. Based on your parameters, this block range should work: [0x8d90cc, 0x8d90d5]. Upgrade to PAYG for expanded block range.\"}}","stack":"easy-swap/internal/scan.(*Scanner).Start\n\t/Users/htt/web3/项目模板/ProjectDemo/internal/scan/scanner.go:87"}
+{"level":"info","time":"2026-04-28T10:24:02.554+0800","caller":"scan/scanner.go:233","msg":"✅ RPC节点重连成功"}
+{"level":"info","time":"2026-04-28T10:24:04.320+0800","caller":"scan/main.go:38","msg":"扫链服务退出"}
+{"level":"info","time":"2026-04-28T10:26:29.383+0800","caller":"scan/scanner.go:71","msg":"✅ 扫链服务启动","block":8923483}
+{"level":"error","time":"2026-04-28T10:26:34.409+0800","caller":"scan/scanner.go:87","msg":"❌ 扫描异常，重连RPC","error":"400 Bad Request: {\"jsonrpc\":\"2.0\",\"id\":3,\"error\":{\"code\":-32600,\"message\":\"Under the Free tier plan, you can make eth_getLogs requests with up to a 10 block range. Based on your parameters, this block range should work: [0x8d90cc, 0x8d90d5]. Upgrade to PAYG for expanded block range.\"}}","stack":"easy-swap/internal/scan.(*Scanner).Start\n\t/Users/htt/web3/项目模板/ProjectDemo/internal/scan/scanner.go:87"}
+{"level":"info","time":"2026-04-28T10:26:34.409+0800","caller":"scan/scanner.go:233","msg":"✅ RPC节点重连成功"}
+{"level":"error","time":"2026-04-28T10:26:36.239+0800","caller":"scan/scanner.go:87","msg":"❌ 扫描异常，重连RPC","error":"400 Bad Request: {\"jsonrpc\":\"2.0\",\"id\":3,\"error\":{\"code\":-32600,\"message\":\"Under the Free tier plan, you can make eth_getLogs requests with up to a 10 block range. Based on your parameters, this block range should work: [0x8d90cc, 0x8d90d5]. Upgrade to PAYG for expanded block range.\"}}","stack":"easy-swap/internal/scan.(*Scanner).Start\n\t/Users/htt/web3/项目模板/ProjectDemo/internal/scan/scanner.go:87"}
+{"level":"info","time":"2026-04-28T10:26:36.239+0800","caller":"scan/scanner.go:233","msg":"✅ RPC节点重连成功"}
+{"level":"info","time":"2026-04-28T10:26:38.169+0800","caller":"scan/main.go:38","msg":"扫链服务退出"}
+{"level":"info","time":"2026-04-28T10:27:46.073+0800","caller":"scan/scanner.go:71","msg":"✅ 扫链服务启动","block":8923483}
+{"level":"info","time":"2026-04-28T10:28:06.153+0800","caller":"scan/main.go:38","msg":"扫链服务退出"}
+{"level":"warn","time":"2026-04-28T10:28:06.153+0800","caller":"scan/scanner.go:94","msg":"🛑 扫链服务停止"}
+{"level":"info","time":"2026-04-28T10:29:39.142+0800","caller":"scan/scanner.go:71","msg":"✅ 扫链服务启动","block":8923483}
+{"level":"warn","time":"2026-04-28T10:29:49.934+0800","caller":"scan/scanner.go:94","msg":"🛑 扫链服务停止"}
+{"level":"info","time":"2026-04-28T10:29:49.934+0800","caller":"scan/main.go:38","msg":"扫链服务退出"}
+{"level":"info","time":"2026-04-28T10:32:00.710+0800","caller":"scan/scanner.go:71","msg":"✅ 扫链服务启动","block":8923483}
+{"level":"info","time":"2026-04-28T10:32:27.856+0800","caller":"scan/main.go:38","msg":"扫链服务退出"}
+{"level":"info","time":"2026-04-28T10:33:00.543+0800","caller":"scan/scanner.go:71","msg":"✅ 扫链服务启动","block":8923483}
+{"level":"info","time":"2026-04-28T10:33:21.913+0800","caller":"scan/main.go:38","msg":"扫链服务退出"}
+{"level":"info","time":"2026-04-28T10:40:18.847+0800","caller":"scan/scanner.go:71","msg":"✅ 扫链服务启动","block":8923483}
+{"level":"info","time":"2026-04-28T10:41:06.275+0800","caller":"scan/main.go:38","msg":"扫链服务退出"}
+{"level":"warn","time":"2026-04-28T10:41:06.275+0800","caller":"scan/scanner.go:94","msg":"🛑 扫链服务停止"}
+{"level":"info","time":"2026-04-28T10:41:33.593+0800","caller":"scan/scanner.go:71","msg":"✅ 扫链服务启动","block":8923483}
+{"level":"warn","time":"2026-04-28T10:41:53.652+0800","caller":"scan/scanner.go:94","msg":"🛑 扫链服务停止"}
+{"level":"info","time":"2026-04-28T10:41:53.652+0800","caller":"scan/main.go:38","msg":"扫链服务退出"}
+{"level":"info","time":"2026-04-28T10:42:51.945+0800","caller":"scan/scanner.go:71","msg":"✅ 扫链服务启动","block":8923483}
+{"level":"info","time":"2026-04-28T10:43:00.786+0800","caller":"scan/main.go:38","msg":"扫链服务退出"}
+{"level":"warn","time":"2026-04-28T10:43:00.786+0800","caller":"scan/scanner.go:94","msg":"🛑 扫链服务停止"}
+{"level":"info","time":"2026-04-28T10:45:17.511+0800","caller":"scan/scanner.go:71","msg":"✅ 扫链服务启动","block":8923483}
+{"level":"info","time":"2026-04-28T10:45:28.200+0800","caller":"scan/main.go:38","msg":"扫链服务退出"}
+{"level":"warn","time":"2026-04-28T10:45:28.200+0800","caller":"scan/scanner.go:94","msg":"🛑 扫链服务停止"}
+{"level":"info","time":"2026-04-28T10:46:52.287+0800","caller":"scan/scanner.go:71","msg":"✅ 扫链服务启动","block":8923483}
+{"level":"info","time":"2026-04-28T10:47:03.930+0800","caller":"scan/main.go:38","msg":"扫链服务退出"}
+{"level":"warn","time":"2026-04-28T10:47:03.930+0800","caller":"scan/scanner.go:94","msg":"🛑 扫链服务停止"}
+{"level":"info","time":"2026-04-28T10:47:13.990+0800","caller":"scan/scanner.go:71","msg":"✅ 扫链服务启动","block":8923483}
+{"level":"warn","time":"2026-04-28T10:47:24.329+0800","caller":"scan/scanner.go:94","msg":"🛑 扫链服务停止"}
+{"level":"info","time":"2026-04-28T10:47:24.329+0800","caller":"scan/main.go:38","msg":"扫链服务退出"}
+{"level":"info","time":"2026-04-28T10:48:18.990+0800","caller":"scan/scanner.go:71","msg":"✅ 扫链服务启动","block":8923483}
+{"level":"warn","time":"2026-04-28T10:48:30.306+0800","caller":"scan/scanner.go:94","msg":"🛑 扫链服务停止"}
+{"level":"info","time":"2026-04-28T10:48:30.306+0800","caller":"scan/main.go:38","msg":"扫链服务退出"}
+{"level":"info","time":"2026-04-28T10:50:49.227+0800","caller":"scan/scanner.go:71","msg":"✅ 扫链服务启动","block":8923483}
+{"level":"info","time":"2026-04-28T10:50:56.580+0800","caller":"scan/main.go:38","msg":"扫链服务退出"}
+{"level":"warn","time":"2026-04-28T10:50:56.580+0800","caller":"scan/scanner.go:94","msg":"🛑 扫链服务停止"}
+{"level":"info","time":"2026-04-28T10:52:18.207+0800","caller":"scan/scanner.go:71","msg":"✅ 扫链服务启动","block":8923483}
+{"level":"info","time":"2026-04-28T10:52:25.395+0800","caller":"scan/main.go:38","msg":"扫链服务退出"}
+{"level":"warn","time":"2026-04-28T10:52:25.395+0800","caller":"scan/scanner.go:94","msg":"🛑 扫链服务停止"}
+{"level":"info","time":"2026-04-28T10:58:14.037+0800","caller":"scan/scanner.go:71","msg":"✅ 扫链服务启动","block":8923483}
+{"level":"warn","time":"2026-04-28T10:58:22.214+0800","caller":"scan/scanner.go:94","msg":"🛑 扫链服务停止"}
+{"level":"info","time":"2026-04-28T10:58:22.214+0800","caller":"scan/main.go:38","msg":"扫链服务退出"}
+{"level":"info","time":"2026-04-28T10:58:46.213+0800","caller":"scan/scanner.go:71","msg":"✅ 扫链服务启动","block":8923483}
+{"level":"info","time":"2026-04-28T10:58:54.420+0800","caller":"scan/main.go:38","msg":"扫链服务退出"}
+{"level":"warn","time":"2026-04-28T10:58:54.420+0800","caller":"scan/scanner.go:94","msg":"🛑 扫链服务停止"}
+{"level":"info","time":"2026-04-28T10:59:35.179+0800","caller":"scan/scanner.go:71","msg":"✅ 扫链服务启动","block":8923483}
+{"level":"info","time":"2026-04-28T10:59:42.694+0800","caller":"scan/main.go:38","msg":"扫链服务退出"}
+{"level":"warn","time":"2026-04-28T10:59:42.694+0800","caller":"scan/scanner.go:94","msg":"🛑 扫链服务停止"}
+{"level":"info","time":"2026-04-28T10:59:57.643+0800","caller":"scan/scanner.go:71","msg":"✅ 扫链服务启动","block":8923483}
+{"level":"info","time":"2026-04-28T11:00:04.085+0800","caller":"scan/main.go:38","msg":"扫链服务退出"}
+{"level":"info","time":"2026-04-28T11:07:13.808+0800","caller":"scan/scanner.go:71","msg":"✅ 扫链服务启动","block":8923483}
+{"level":"info","time":"2026-04-28T11:07:23.473+0800","caller":"scan/main.go:38","msg":"扫链服务退出"}
+{"level":"info","time":"2026-04-28T11:16:06.098+0800","caller":"scan/scanner.go:71","msg":"✅ 扫链服务启动","block":8923483}
+{"level":"info","time":"2026-04-28T11:16:14.888+0800","caller":"scan/main.go:38","msg":"扫链服务退出"}
+{"level":"warn","time":"2026-04-28T11:16:14.888+0800","caller":"scan/scanner.go:94","msg":"🛑 扫链服务停止"}
+{"level":"info","time":"2026-04-28T11:17:35.320+0800","caller":"scan/scanner.go:71","msg":"✅ 扫链服务启动","block":8923483}
+{"level":"info","time":"2026-04-28T11:17:44.667+0800","caller":"scan/main.go:38","msg":"扫链服务退出"}
+{"level":"info","time":"2026-04-28T11:18:10.843+0800","caller":"scan/scanner.go:71","msg":"✅ 扫链服务启动","block":8923483}
+{"level":"warn","time":"2026-04-28T11:18:18.513+0800","caller":"scan/scanner.go:94","msg":"🛑 扫链服务停止"}
+{"level":"info","time":"2026-04-28T11:18:18.513+0800","caller":"scan/main.go:38","msg":"扫链服务退出"}
+{"level":"info","time":"2026-04-28T11:18:32.733+0800","caller":"scan/scanner.go:71","msg":"✅ 扫链服务启动","block":8923483}
+{"level":"info","time":"2026-04-28T11:18:43.689+0800","caller":"scan/main.go:38","msg":"扫链服务退出"}
+{"level":"warn","time":"2026-04-28T11:18:43.689+0800","caller":"scan/scanner.go:94","msg":"🛑 扫链服务停止"}
+{"level":"info","time":"2026-04-28T11:19:13.518+0800","caller":"scan/scanner.go:71","msg":"✅ 扫链服务启动","block":8923483}
+{"level":"info","time":"2026-04-28T11:19:23.192+0800","caller":"scan/main.go:38","msg":"扫链服务退出"}
+{"level":"info","time":"2026-04-28T11:22:00.251+0800","caller":"scan/scanner.go:71","msg":"✅ 扫链服务启动","block":8923483}
+{"level":"warn","time":"2026-04-28T11:22:08.764+0800","caller":"scan/scanner.go:94","msg":"🛑 扫链服务停止"}
+{"level":"info","time":"2026-04-28T11:22:08.764+0800","caller":"scan/main.go:38","msg":"扫链服务退出"}
+{"level":"info","time":"2026-04-28T11:22:59.701+0800","caller":"scan/scanner.go:71","msg":"✅ 扫链服务启动","block":8923483}
+{"level":"info","time":"2026-04-28T11:23:13.443+0800","caller":"scan/main.go:38","msg":"扫链服务退出"}
+{"level":"warn","time":"2026-04-28T11:23:13.443+0800","caller":"scan/scanner.go:94","msg":"🛑 扫链服务停止"}
+{"level":"info","time":"2026-04-28T11:24:43.020+0800","caller":"scan/scanner.go:71","msg":"✅ 扫链服务启动","block":8923483}
+{"level":"warn","time":"2026-04-28T11:24:51.017+0800","caller":"scan/scanner.go:94","msg":"🛑 扫链服务停止"}
+{"level":"info","time":"2026-04-28T11:24:51.017+0800","caller":"scan/main.go:38","msg":"扫链服务退出"}
+{"level":"info","time":"2026-04-28T11:25:02.643+0800","caller":"scan/scanner.go:71","msg":"✅ 扫链服务启动","block":8923483}
+{"level":"warn","time":"2026-04-28T11:25:10.343+0800","caller":"scan/scanner.go:94","msg":"🛑 扫链服务停止"}
+{"level":"info","time":"2026-04-28T11:25:10.343+0800","caller":"scan/main.go:38","msg":"扫链服务退出"}
+{"level":"info","time":"2026-04-28T11:27:50.291+0800","caller":"scan/scanner.go:71","msg":"✅ 扫链服务启动","block":8923483}
+{"level":"info","time":"2026-04-28T11:27:58.774+0800","caller":"scan/main.go:38","msg":"扫链服务退出"}
+{"level":"warn","time":"2026-04-28T11:27:58.774+0800","caller":"scan/scanner.go:94","msg":"🛑 扫链服务停止"}
+{"level":"info","time":"2026-04-28T11:29:08.093+0800","caller":"scan/scanner.go:71","msg":"✅ 扫链服务启动","block":8923483}
+{"level":"info","time":"2026-04-28T11:29:16.790+0800","caller":"scan/main.go:38","msg":"扫链服务退出"}
+{"level":"warn","time":"2026-04-28T11:29:16.790+0800","caller":"scan/scanner.go:94","msg":"🛑 扫链服务停止"}
+{"level":"info","time":"2026-04-28T11:35:53.105+0800","caller":"scan/scanner.go:71","msg":"✅ 扫链服务启动","block":8923483}
+{"level":"warn","time":"2026-04-28T11:36:25.547+0800","caller":"scan/scanner.go:94","msg":"🛑 扫链服务停止"}
+{"level":"info","time":"2026-04-28T11:36:25.547+0800","caller":"scan/main.go:38","msg":"扫链服务退出"}
+{"level":"info","time":"2026-04-28T11:37:33.322+0800","caller":"scan/scanner.go:71","msg":"✅ 扫链服务启动","block":8923483}
+{"level":"info","time":"2026-04-28T11:38:14.448+0800","caller":"scan/main.go:38","msg":"扫链服务退出"}
+{"level":"warn","time":"2026-04-28T11:38:14.448+0800","caller":"scan/scanner.go:94","msg":"🛑 扫链服务停止"}
+{"level":"info","time":"2026-04-28T14:06:29.307+0800","caller":"scan/scanner.go:71","msg":"✅ 扫链服务启动","block":8923483}
+{"level":"info","time":"2026-04-28T14:07:25.384+0800","caller":"scan/main.go:38","msg":"扫链服务退出"}
+{"level":"warn","time":"2026-04-28T14:07:25.384+0800","caller":"scan/scanner.go:94","msg":"🛑 扫链服务停止"}
+{"level":"info","time":"2026-04-28T14:14:24.595+0800","caller":"scan/scanner.go:71","msg":"✅ 扫链服务启动","block":8923483}
+{"level":"info","time":"2026-04-28T14:15:03.992+0800","caller":"scan/main.go:38","msg":"扫链服务退出"}
+{"level":"info","time":"2026-04-28T14:15:36.827+0800","caller":"scan/scanner.go:71","msg":"✅ 扫链服务启动","block":10747403}
+{"level":"info","time":"2026-04-28T14:15:48.300+0800","caller":"scan/main.go:38","msg":"扫链服务退出"}
+{"level":"info","time":"2026-04-28T14:21:10.555+0800","caller":"scan/scanner.go:71","msg":"✅ 扫链服务启动","block":8923483}
+{"level":"info","time":"2026-04-28T14:21:39.834+0800","caller":"scan/main.go:38","msg":"扫链服务退出"}
+{"level":"warn","time":"2026-04-28T14:21:39.834+0800","caller":"scan/scanner.go:94","msg":"🛑 扫链服务停止"}
+{"level":"info","time":"2026-04-28T14:22:33.129+0800","caller":"scan/scanner.go:71","msg":"✅ 扫链服务启动","block":10747433}
+{"level":"warn","time":"2026-04-28T14:22:47.067+0800","caller":"scan/scanner.go:94","msg":"🛑 扫链服务停止"}
+{"level":"info","time":"2026-04-28T14:22:47.067+0800","caller":"scan/main.go:38","msg":"扫链服务退出"}
+{"level":"info","time":"2026-04-28T14:24:13.949+0800","caller":"scan/scanner.go:71","msg":"✅ 扫链服务启动","block":10747438}
+{"level":"info","time":"2026-04-28T14:24:45.817+0800","caller":"scan/main.go:38","msg":"扫链服务退出"}
+{"level":"warn","time":"2026-04-28T14:24:45.817+0800","caller":"scan/scanner.go:94","msg":"🛑 扫链服务停止"}
+{"level":"info","time":"2026-04-28T14:25:22.546+0800","caller":"scan/scanner.go:71","msg":"✅ 扫链服务启动","block":10747448}
+{"level":"warn","time":"2026-04-28T14:25:39.978+0800","caller":"scan/scanner.go:94","msg":"🛑 扫链服务停止"}
+{"level":"info","time":"2026-04-28T14:25:39.978+0800","caller":"scan/main.go:38","msg":"扫链服务退出"}
+{"level":"info","time":"2026-04-28T14:28:39.899+0800","caller":"scan/scanner.go:71","msg":"✅ 扫链服务启动","block":10747452}
+{"level":"info","time":"2026-04-28T14:29:00.295+0800","caller":"scan/main.go:38","msg":"扫链服务退出"}
+{"level":"warn","time":"2026-04-28T14:29:00.295+0800","caller":"scan/scanner.go:94","msg":"🛑 扫链服务停止"}
+{"level":"info","time":"2026-04-28T14:30:14.700+0800","caller":"scan/scanner.go:71","msg":"✅ 扫链服务启动","block":10747465}
+{"level":"info","time":"2026-04-28T14:30:37.757+0800","caller":"scan/main.go:38","msg":"扫链服务退出"}
+{"level":"warn","time":"2026-04-28T14:30:37.757+0800","caller":"scan/scanner.go:94","msg":"🛑 扫链服务停止"}
+{"level":"info","time":"2026-04-28T14:30:59.448+0800","caller":"scan/scanner.go:71","msg":"✅ 扫链服务启动","block":10747472}
+{"level":"info","time":"2026-04-28T14:31:16.398+0800","caller":"scan/main.go:38","msg":"扫链服务退出"}
+{"level":"warn","time":"2026-04-28T14:31:16.398+0800","caller":"scan/scanner.go:94","msg":"🛑 扫链服务停止"}
+{"level":"info","time":"2026-04-28T14:34:27.837+0800","caller":"scan/scanner.go:71","msg":"✅ 扫链服务启动","block":10747476}
+{"level":"info","time":"2026-04-28T14:35:00.761+0800","caller":"scan/main.go:38","msg":"扫链服务退出"}
+{"level":"warn","time":"2026-04-28T14:35:00.761+0800","caller":"scan/scanner.go:94","msg":"🛑 扫链服务停止"}
+{"level":"info","time":"2026-04-28T14:35:54.451+0800","caller":"scan/scanner.go:71","msg":"✅ 扫链服务启动","block":8923483}
+{"level":"warn","time":"2026-04-28T14:37:21.192+0800","caller":"scan/scanner.go:94","msg":"🛑 扫链服务停止"}
+{"level":"info","time":"2026-04-28T14:37:21.192+0800","caller":"scan/main.go:38","msg":"扫链服务退出"}
+{"level":"info","time":"2026-04-28T14:54:27.865+0800","caller":"scan/scanner.go:71","msg":"✅ 扫链服务启动","block":8923613}
+{"level":"info","time":"2026-04-28T14:55:49.512+0800","caller":"scan/main.go:38","msg":"扫链服务退出"}
+{"level":"info","time":"2026-04-28T14:56:02.561+0800","caller":"scan/scanner.go:71","msg":"✅ 扫链服务启动","block":9280861}
+{"level":"info","time":"2026-04-28T14:56:51.116+0800","caller":"scan/main.go:38","msg":"扫链服务退出"}
+{"level":"info","time":"2026-04-28T14:57:46.328+0800","caller":"scan/scanner.go:71","msg":"✅ 扫链服务启动","block":8923483}
+{"level":"info","time":"2026-04-28T14:58:11.820+0800","caller":"scan/main.go:38","msg":"扫链服务退出"}
+{"level":"warn","time":"2026-04-28T14:58:11.820+0800","caller":"scan/scanner.go:94","msg":"🛑 扫链服务停止"}
+{"level":"info","time":"2026-04-28T14:58:38.388+0800","caller":"scan/scanner.go:71","msg":"✅ 扫链服务启动","block":9280861}
+{"level":"info","time":"2026-04-28T14:58:47.593+0800","caller":"scan/main.go:38","msg":"扫链服务退出"}
+{"level":"info","time":"2026-04-28T14:59:23.550+0800","caller":"scan/scanner.go:71","msg":"✅ 扫链服务启动","block":9280861}
+{"level":"warn","time":"2026-04-28T15:11:09.794+0800","caller":"scan/scanner.go:94","msg":"🛑 扫链服务停止"}
+{"level":"info","time":"2026-04-28T15:11:09.794+0800","caller":"scan/main.go:38","msg":"扫链服务退出"}
+{"level":"info","time":"2026-04-28T15:32:34.004+0800","caller":"scan/scanner.go:71","msg":"✅ 扫链服务启动","block":8923483}
+{"level":"info","time":"2026-04-28T15:32:59.085+0800","caller":"scan/main.go:38","msg":"扫链服务退出"}
+{"level":"info","time":"2026-04-28T15:33:48.821+0800","caller":"scan/scanner.go:71","msg":"✅ 扫链服务启动","block":8923483}
+{"level":"warn","time":"2026-04-28T15:33:59.698+0800","caller":"scan/scanner.go:94","msg":"🛑 扫链服务停止"}
+{"level":"info","time":"2026-04-28T15:33:59.698+0800","caller":"scan/main.go:38","msg":"扫链服务退出"}
+{"level":"info","time":"2026-04-28T15:34:20.002+0800","caller":"scan/scanner.go:71","msg":"✅ 扫链服务启动","block":9280861}
+{"level":"info","time":"2026-04-28T15:34:31.155+0800","caller":"scan/main.go:38","msg":"扫链服务退出"}
+{"level":"warn","time":"2026-04-28T15:34:31.155+0800","caller":"scan/scanner.go:94","msg":"🛑 扫链服务停止"}
+{"level":"info","time":"2026-04-28T15:41:11.208+0800","caller":"scan/scanner.go:71","msg":"✅ 扫链服务启动","block":8923483}
+{"level":"info","time":"2026-04-28T15:41:20.201+0800","caller":"scan/main.go:38","msg":"扫链服务退出"}
+{"level":"warn","time":"2026-04-28T15:41:20.201+0800","caller":"scan/scanner.go:94","msg":"🛑 扫链服务停止"}
+{"level":"info","time":"2026-04-28T15:41:51.946+0800","caller":"scan/scanner.go:71","msg":"✅ 扫链服务启动","block":9280861}
+{"level":"info","time":"2026-04-28T15:42:04.891+0800","caller":"scan/main.go:38","msg":"扫链服务退出"}
+{"level":"warn","time":"2026-04-28T15:42:04.891+0800","caller":"scan/scanner.go:94","msg":"🛑 扫链服务停止"}
+{"level":"info","time":"2026-04-28T15:45:15.847+0800","caller":"scan/scanner.go:71","msg":"✅ 扫链服务启动","block":9280861}
+{"level":"info","time":"2026-04-28T15:45:23.989+0800","caller":"scan/main.go:38","msg":"扫链服务退出"}
+{"level":"warn","time":"2026-04-28T15:45:23.989+0800","caller":"scan/scanner.go:94","msg":"🛑 扫链服务停止"}
+{"level":"info","time":"2026-04-28T15:48:06.882+0800","caller":"scan/scanner.go:72","msg":"✅ 扫链服务启动","block":9280871}
+{"level":"info","time":"2026-04-28T15:48:40.294+0800","caller":"scan/main.go:38","msg":"扫链服务退出"}
+{"level":"info","time":"2026-04-28T15:50:54.295+0800","caller":"scan/scanner.go:72","msg":"✅ 扫链服务启动","block":9280861}
+{"level":"info","time":"2026-04-28T15:53:15.707+0800","caller":"scan/main.go:38","msg":"扫链服务退出"}
+{"level":"info","time":"2026-04-28T15:55:34.127+0800","caller":"scan/scanner.go:72","msg":"✅ 扫链服务启动","block":9280861}
+{"level":"warn","time":"2026-04-28T15:56:51.771+0800","caller":"scan/scanner.go:95","msg":"🛑 扫链服务停止"}
+{"level":"info","time":"2026-04-28T15:56:51.771+0800","caller":"scan/main.go:38","msg":"扫链服务退出"}
