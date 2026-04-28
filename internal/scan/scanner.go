@@ -7,6 +7,7 @@ import (
 	"easy-swap/logger"
 	"easy-swap/model"
 	"easy-swap/service"
+	"encoding/hex"
 	"fmt"
 	"math/big"
 	"os"
@@ -36,7 +37,7 @@ const (
 	TransferSig       = "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef"
 	OrderCreatedSig   = "0xfc37f2ff950f95913eb7182357ba3c14df60ef354bc7d6ab1ba2815f249fffe6"
 	OrderCancelledSig = "0x0ac8bb53fac566d7afc05d8b4df11d7690a7b27bdc40b54e4060f9b21fb849bd"
-	OrderFilledSig    = "0xf629aecab94607bc43ce4aebd564bf6e61c7327226a797b002de724b9944b20e"
+	OrderMatchedSig    = "0xf629aecab94607bc43ce4aebd564bf6e61c7327226a797b002de724b9944b20e"
 )
 
 // Scanner 扫链服务结构体
@@ -78,8 +79,6 @@ func (s *Scanner) Start() {
 	quit := make(chan os.Signal, 1)
 	signal.Notify(quit,syscall.SIGINT,syscall.SIGTERM)
 	
-
-	// ✅ 这就是你要背的标准写法
 	for {
 		select {
 		case <-ticker.C:
@@ -108,16 +107,26 @@ func (s *Scanner) scanBlockLoop() error {
 	}
 	// 🔥 修复：免费RPC限制，每次最多扫 5 个区块
 	toBlock := s.lastBlock + 5
+	// fmt.Printf("toBlock:%d\n",toBlock)
+	fmt.Printf("链上最新的区块：%d\n",latestBlock)
+	fmt.Printf("本地最新的区块：%d\n",s.lastBlock)
 	if toBlock > latestBlock {
 		toBlock = latestBlock
 	}
+	// fmt.Printf("toBlock:%d\n",toBlock)
+	// fmt.Printf("监听的合约地址:%s\n",s.contracts)
+	// fmt.Printf("FromBlock:%d\n",s.lastBlock+1)
+	// fmt.Printf("扫描区块：%d-%d",s.lastBlock+1,toBlock)
 
 	// 批量查询区块日志
 	logs, err := s.client.FilterLogs(ctx, ethereum.FilterQuery{
 		Addresses: s.contracts,
 		FromBlock: big.NewInt(int64(s.lastBlock + 1)),
+		// FromBlock: big.NewInt(int64(9277644)),
+		// ToBlock: big.NewInt(int64(9277647)),
 		ToBlock:   big.NewInt(int64(toBlock)),
 	})
+	// fmt.Println(logs)
 	if err != nil {
 		return err
 	}
@@ -128,7 +137,7 @@ func (s *Scanner) scanBlockLoop() error {
 	}
 
 	// 更新扫描高度
-	s.lastBlock = latestBlock
+	s.lastBlock = toBlock
 	scanSvc.SaveLastBlock(s.lastBlock)
 	return nil
 }
@@ -137,6 +146,7 @@ func (s *Scanner) scanBlockLoop() error {
 func (s *Scanner) handleForkRollback() error {
 	ctx := context.Background()
 	latestOnChain, err := s.client.BlockNumber(ctx)
+	// fmt.Printf("latestOnChain:%d\n",latestOnChain)
 	if err != nil {
 		return err
 	}
@@ -172,7 +182,7 @@ func (s *Scanner) ReScan(step uint64) {
 // dispatchEvent 事件分发器
 func (s *Scanner) dispatchEvent(log *types.Log) {
 	sig := log.Topics[0].Hex()
-	fmt.Printf("sig:%s\n",sig)
+	// fmt.Printf("sig:%s\n",sig)
 	switch sig {
 	case TransferSig:
 		ev, err := parser.ParseTransfer(log)
@@ -192,13 +202,15 @@ func (s *Scanner) dispatchEvent(log *types.Log) {
 		if err != nil {
 			return
 		}
+		fmt.Printf("OrderKey:%s\n",string(ev.OrderKey[:]))
 		_ = orderSvc.CreateOrder(&model.MarketOrder{
-			OrderId:     ev.OrderId,
-			TokenID:     ev.TokenId,
-			Seller:      ev.Seller.Hex(),
-			Price:       ev.Price,
-			Status:      0,
-			TxHash:      log.TxHash.Hex(),
+			// OrderId:     string(ev.OrderKey[:]),
+			OrderKey: hex.EncodeToString(ev.OrderKey[:]),
+			TokenID:     ev.Nft.Collection.Hex(),
+			Maker:      ev.Maker.Hex(),
+			Price:       string(ev.Price.String()),
+			OrderStatus: 0,
+			TxHash: log.TxHash.Hex(),
 			BlockNumber: log.BlockNumber,
 		})
 
@@ -209,12 +221,24 @@ func (s *Scanner) dispatchEvent(log *types.Log) {
 		}
 		_ = orderSvc.CancelOrder(ev.OrderId)
 
-	case OrderFilledSig:
+	case OrderMatchedSig:
 		ev, err := parser.ParseOrderFilled(log)
 		if err != nil {
 			return
 		}
-		_ = orderSvc.FillOrder(ev.OrderId)
+		// _ = orderSvc.FillOrder(string(ev.MakeOrderKey[:]))
+		fmt.Printf("LogMatch----TxHash:%s\n",log.TxHash.Hex())
+		marketOrder := model.MarketOrder{
+			OrderKey:     string(ev.MakeOrderKey[:]),
+			TokenID:     string(ev.TakeOrderKey[:]),
+			// Seller:      string(ev.MakeOrder.Maker[:]),
+			Price:       string(ev.FillPrice.String()),
+			OrderStatus:      1,
+			TxHash:      log.TxHash.Hex(),
+			BlockNumber: log.BlockNumber,
+		
+		}
+		_ = orderSvc.CreateOrder(&marketOrder)
 	}
 }
 

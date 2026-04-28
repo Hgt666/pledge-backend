@@ -3,6 +3,7 @@ package service
 import (
 	"easy-swap/dao"
 	"easy-swap/model"
+	"fmt"
 )
 
 // OrderService 订单业务逻辑
@@ -28,6 +29,7 @@ func (s *OrderService) CancelOrder(orderId string) error {
 
 // FillOrder 订单成交
 func (s *OrderService) FillOrder(orderId string) error {
+	fmt.Printf("orderId:%s\n",orderId)
 	return s.orderDao.UpdateStatus(orderId, 1)
 }
 

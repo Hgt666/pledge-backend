@@ -1,6 +1,8 @@
 package parser
 
 import (
+	"fmt"
+	"math/big"
 	"strings"
 
 	"github.com/ethereum/go-ethereum/accounts/abi"
@@ -258,10 +260,14 @@ type TransferEvent struct {
 
 // OrderCreatedEvent 订单创建事件
 type OrderCreatedEvent struct {
-	Seller  common.Address
-	OrderId string
-	TokenId string
-	Price   string
+	OrderKey [32]byte
+	Side     uint8
+	SaleKind uint8
+	Maker    common.Address
+	Nft      Asset
+	Price    *big.Int
+	Expiry   uint64	
+	Salt     uint64
 }
 
 // OrderCancelledEvent 订单取消事件
@@ -271,8 +277,27 @@ type OrderCancelledEvent struct {
 
 // OrderFilledEvent 订单成交事件
 type OrderFilledEvent struct {
-	OrderId string
-	Buyer   common.Address
+	MakeOrderKey [32]byte
+	TakeOrderKey [32]byte
+	MakeOrder    Order
+	TakeOrder    Order
+	FillPrice    *big.Int
+}
+
+type Order struct {
+	Side       uint8
+	SaleKind   uint8
+	Maker      common.Address
+	Nft        Asset
+	Price      *big.Int
+	Expiry     uint64
+	Salt       uint64
+}
+
+type Asset struct {
+	TokenId    *big.Int
+	Collection common.Address
+	Amount     *big.Int
 }
 
 // ParseTransfer 解析NFT转账日志
@@ -289,17 +314,18 @@ func ParseTransfer(log *types.Log) (*TransferEvent, error) {
 // ParseOrderCreated 解析创建订单日志
 func ParseOrderCreated(log *types.Log) (*OrderCreatedEvent, error) {
 	var event OrderCreatedEvent
-	if err := marketAbi.UnpackIntoInterface(&event, "OrderCreated", log.Data); err != nil {
+	if err := marketAbi.UnpackIntoInterface(&event, "LogMake", log.Data); err != nil {
 		return nil, err
 	}
-	event.Seller = common.BytesToAddress(log.Topics[1].Bytes())
+	// event.Seller = common.BytesToAddress(log.Topics[1].Bytes())
+	// fmt.Printf("event",&event)
 	return &event, nil
 }
 
 // ParseOrderCancelled 解析取消订单日志
 func ParseOrderCancelled(log *types.Log) (*OrderCancelledEvent, error) {
 	var event OrderCancelledEvent
-	if err := marketAbi.UnpackIntoInterface(&event, "OrderCancelled", log.Data); err != nil {
+	if err := marketAbi.UnpackIntoInterface(&event, "LogCancel", log.Data); err != nil {
 		return nil, err
 	}
 	return &event, nil
@@ -307,10 +333,24 @@ func ParseOrderCancelled(log *types.Log) (*OrderCancelledEvent, error) {
 
 // ParseOrderFilled 解析订单成交日志
 func ParseOrderFilled(log *types.Log) (*OrderFilledEvent, error) {
+	// fmt.Println("解析订单成交日志....")
+	// if len(log.Topics) > 2 {
+	// 	fmt.Printf("topics[0]:%s\n", common.Bytes2Hex(log.Topics[0][:]))
+	// 	fmt.Printf("topics[1]:%s\n", common.Bytes2Hex(log.Topics[1][:]))
+	// 	fmt.Printf("topics[2]:%s\n", common.Bytes2Hex(log.Topics[2][:]))
+	// }
+	// fmt.Printf("log.Data:%s\n",log.Data)
 	var event OrderFilledEvent
-	if err := marketAbi.UnpackIntoInterface(&event, "OrderFilled", log.Data); err != nil {
+	if err := marketAbi.UnpackIntoInterface(&event, "LogMatch", log.Data); err != nil {
+		fmt.Println("解析出错了", err)
 		return nil, err
 	}
-	event.Buyer = common.BytesToAddress(log.Topics[1].Bytes())
+	// event.MakeOrderKey = log.Topics[1]
+	// event.TakeOrderKey = log.Topics[2]
+	// fmt.Printf("MakeOrderKey:%s\n",common.Bytes2Hex(event.MakeOrderKey[:]))
+	// fmt.Printf("TakeOrderKey:%s\n",common.Bytes2Hex(event.TakeOrderKey[:]))
+	// fmt.Printf("Side:%d\n",event.MakeOrder.Side)
+	// fmt.Printf("SaleKind:%d\n",event.MakeOrder.SaleKind)
+	// fmt.Printf("Maker:%s\n",event.TakeOrder.Maker)
 	return &event, nil
 }
