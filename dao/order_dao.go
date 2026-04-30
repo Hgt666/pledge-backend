@@ -3,6 +3,8 @@ package dao
 import (
 	"easy-swap/dal"
 	"easy-swap/model"
+
+	"gorm.io/gorm/clause"
 )
 
 // OrderDao 订单数据操作
@@ -14,17 +16,12 @@ func NewOrderDao() *OrderDao {
 
 // CreateOrder 创建挂单记录
 func (d *OrderDao) CreateOrder(order *model.MarketOrder) error {
-	// return dal.DB.Create(order).Error
-	// return  dal.DB.Where("tx_hash = ?",order.TxHash).Assign(&model.MarketOrder{
-	// 	OrderId: order.OrderId,
-	// 	TokenID: order.TokenID,
-	// 	Seller: order.Seller,
-	// 	Price: order.Price,
-	// 	Status: order.Status,
-	// 	TxHash: order.TxHash,
-	// 	BlockNumber: order.BlockNumber,
-	// }).FirstOrCreate(&order).Error
-	return dal.DB.Where("tx_hash = ?",order.TxHash).Assign(order).FirstOrCreate(&order).Error
+	return  dal.DB.Clauses(
+		clause.OnConflict{
+			Columns: []clause.Column{{Name: "order_key"},{Name: "tx_hash"}},
+			DoNothing: true,
+		},
+	).Create(&order).Error
 }
 
 // UpdateStatus 修改订单状态
