@@ -29,6 +29,13 @@ func (d *ScanDao) GetLastBlock() (uint64, error) {
 	return sh.LastBlock, err
 }
 
+// 获取最后扫描区块hash
+func (d *ScanDao) GetLastBlockHash() (string, error) {
+	var sh model.ScanHeight
+	err := dal.DB.First(&sh).Error
+	return sh.LastBlockHash,err
+}
+
 // SaveLastBlock 保存最新扫描区块
 func (d *ScanDao) SaveLastBlock(num uint64) error {
 	return dal.DB.Model(&model.ScanHeight{}).

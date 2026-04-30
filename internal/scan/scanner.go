@@ -113,17 +113,11 @@ func (s *Scanner) scanBlockLoop() error {
 	if toBlock > latestBlock {
 		toBlock = latestBlock
 	}
-	// fmt.Printf("toBlock:%d\n",toBlock)
-	// fmt.Printf("监听的合约地址:%s\n",s.contracts)
-	// fmt.Printf("FromBlock:%d\n",s.lastBlock+1)
-	// fmt.Printf("扫描区块：%d-%d",s.lastBlock+1,toBlock)
 
 	// 批量查询区块日志
 	logs, err := s.client.FilterLogs(ctx, ethereum.FilterQuery{
 		Addresses: s.contracts,
 		FromBlock: big.NewInt(int64(s.lastBlock + 1)),
-		// FromBlock: big.NewInt(int64(9277644)),
-		// ToBlock: big.NewInt(int64(9277647)),
 		ToBlock:   big.NewInt(int64(toBlock)),
 	})
 	// fmt.Println(logs)
@@ -146,18 +140,57 @@ func (s *Scanner) scanBlockLoop() error {
 func (s *Scanner) handleForkRollback() error {
 	ctx := context.Background()
 	latestOnChain, err := s.client.BlockNumber(ctx)
-	// fmt.Printf("latestOnChain:%d\n",latestOnChain)
 	if err != nil {
 		return err
 	}
 
-	// 本地高度大于链上高度，说明出现区块分叉
+	// ====== 【1】先判断：本地高度 > 链上高度 → 分叉 ======
 	if s.lastBlock > latestOnChain {
 		rollbackPoint := latestOnChain - config.GlobalConfig.Chain.SafeBlock
-		// log.Printf("⚠️ 检测到链分叉，数据回滚至区块：%d", rollbackPoint)
-		logger.Log.Warn("⚠️ 检测到链分叉，数据回滚至区块:",zap.Uint64("rollback",rollbackPoint))
+		logger.Log.Warn("⚠️ 检测到链分叉（本地高度 > 链上高度）", zap.Uint64("rollback", rollbackPoint))
 
-		// 业务层回滚数据
+		// 回滚业务数据
+		_ = nftSvc.RollbackByBlock(rollbackPoint)
+		_ = orderSvc.RollbackByBlock(rollbackPoint)
+
+		// 重置高度
+		s.lastBlock = rollbackPoint
+		scanSvc.SaveLastBlock(s.lastBlock)
+		return nil
+	}
+
+	// ====== 【2】关键：判断 同高度但区块哈希不匹配 → 分叉（最常见！）======
+	// 只有本地已经扫描过区块，才做哈希校验
+	if s.lastBlock <= 0 {
+		return nil // 第一次启动，不校验
+	}
+
+	// 获取【链上】当前区块的哈希
+	onChainBlock, err := s.client.BlockByNumber(ctx, big.NewInt(int64(s.lastBlock)))
+	if err != nil {
+		return err
+	}
+	chainBlockHash := onChainBlock.Hash().Hex()
+
+	// 获取【本地数据库】存储的当前区块哈希
+	localBlockHash, err := scanSvc.GetLastBlockHash() // 你需要实现这个方法
+	if err != nil {
+		// 🟢 本地哈希为空 → 第一次扫描，不分叉，直接返回
+		logger.Log.Info("🟢 首次扫描，不进行分叉校验", zap.Uint64("block", s.lastBlock))
+		return nil
+	}
+
+	// 🔴 区块哈希不一致 → 真正的链分叉！（高度一样，块不一样）
+	if localBlockHash != chainBlockHash {
+		rollbackPoint := s.lastBlock - config.GlobalConfig.Chain.SafeBlock
+		logger.Log.Warn("⚠️ 检测到链分叉（区块哈希不匹配）",
+			zap.Uint64("block", s.lastBlock),
+			zap.String("local_hash", localBlockHash),
+			zap.String("chain_hash", chainBlockHash),
+			zap.Uint64("rollback_to", rollbackPoint),
+		)
+
+		// 回滚脏数据
 		_ = nftSvc.RollbackByBlock(rollbackPoint)
 		_ = orderSvc.RollbackByBlock(rollbackPoint)
 
@@ -165,6 +198,7 @@ func (s *Scanner) handleForkRollback() error {
 		s.lastBlock = rollbackPoint
 		scanSvc.SaveLastBlock(s.lastBlock)
 	}
+
 	return nil
 }
 
