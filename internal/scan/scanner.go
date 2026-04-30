@@ -10,9 +10,6 @@ import (
 	"encoding/hex"
 	"fmt"
 	"math/big"
-	"os"
-	"os/signal"
-	"syscall"
 	"time"
 
 	"github.com/ethereum/go-ethereum"
@@ -68,16 +65,13 @@ func NewScanner() (*Scanner, error) {
 }
 
 // Start 启动定时扫链
-func (s *Scanner) Start() {
+func (s *Scanner) Start(ctx context.Context) error {
 	logger.Log.Info("✅ 扫链服务启动",zap.Uint64("block",s.lastBlock))
 	// ticker := time.NewTicker(time.Duration(config.GlobalConfig.Chain.ScanInterval) * time.Second)
 	interval := time.Second * 3
 	ticker := time.NewTicker(interval)
 	defer ticker.Stop()
 
-	// 监听系统退出信号（企业必备）
-	quit := make(chan os.Signal, 1)
-	signal.Notify(quit,syscall.SIGINT,syscall.SIGTERM)
 	
 	for {
 		select {
@@ -89,11 +83,11 @@ func (s *Scanner) Start() {
 				_ = s.reconnectRPC()
 			}
 
-		case <-quit:
+		case <-ctx.Done():
 			// 优雅退出（企业必须有）
 			// log.Println("🛑 扫链服务停止")
 			logger.Log.Warn("🛑 扫链服务停止")
-			return
+			
 		}
 	}
 }
