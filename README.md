@@ -1,4 +1,4 @@
-# EasySwap NFT Market Backend
+# Pledge Backend
 ## 项目介绍
 基于 Golang 开发的 **Web3 NFT 交易市场后端服务**，
 集成链上事件监听、合约ABI解析、数据持久化、区块分叉处理、定时扫链、RESTful API 能力。
