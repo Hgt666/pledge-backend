@@ -2,12 +2,14 @@ package main
 
 import (
 	"easy-swap/config"
+	"easy-swap/contract"
 	"easy-swap/dal"
+	_ "easy-swap/docs" // 👈 你的项目名/docs
 	"easy-swap/logger"
 	"easy-swap/router"
+
+	"github.com/swaggo/files" // 👈 正确写法
 	ginSwagger "github.com/swaggo/gin-swagger"
-	"github.com/swaggo/files"  // 👈 正确写法
-	_ "easy-swap/docs"        // 👈 你的项目名/docs
 
 	"github.com/gin-gonic/gin"
 	"go.uber.org/zap"
@@ -38,6 +40,7 @@ func main() {
 	// Swagger 接口文档路由
 	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 	router.Register(r)
+	contract.InitContract()
 
 	port := ":" + config.GlobalConfig.App.Port
 	logger.Log.Info("API服务启动", zap.String("port", port))

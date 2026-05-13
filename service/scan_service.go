@@ -34,6 +34,6 @@ func ( s *ScanService) GetLastBlockHash() (string,error) {
 }
 
 // SaveLastBlock 保存扫描高度
-func (s *ScanService) SaveLastBlock(num uint64) {
-	_ = s.scanDao.SaveLastBlock(num)
+func (s *ScanService) SaveLastBlock(num uint64, block_hash string) {
+	_ = s.scanDao.SaveLastBlock(num, block_hash)
 }

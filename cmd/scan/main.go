@@ -1,17 +1,17 @@
 package main
 
 import (
+	"context"
 	"easy-swap/config"
 	"easy-swap/dal"
 	"easy-swap/internal/parser"
 	"easy-swap/internal/scan"
 	"easy-swap/logger"
+	task "easy-swap/tasks"
 	"os"
 	"os/signal"
 	"syscall"
 	"time"
-	"context"
-
 
 	"go.uber.org/zap"
 )
@@ -39,6 +39,11 @@ func main() {
 	// 创建全局上下文，控制整个服务生命周期
 	ctx,cancel := context.WithCancel(context.Background())
 	defer cancel()
+
+	// 启动定时任务 
+	go func() {
+		task.StartCalcJob()
+	}()
 
 
 	// 启动扫链服务,使用 ctx

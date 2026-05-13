@@ -25,9 +25,15 @@ func InitDB() {
 
 	// 自动创建数据表
 	err = db.AutoMigrate(
-		&model.NftTransfer{},
-		&model.MarketOrder{},
-		&model.ScanHeight{},
+		&model.Chain{},
+		&model.LendingPool{},
+		&model.MultiSign{},
+		&model.LiquidationRecord{},
+		&model.UserPledgeLoan{},
+		&model.UserDeposit{},
+		&model.Token{},
+		&model.PriceCache{},
+		&model.IndexerStatus{},
 	)
 	if err != nil {
 		log.Fatal("数据表迁移失败: ", err)

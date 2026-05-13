@@ -16,7 +16,7 @@ var (
 )
 
 // Init 初始化abi解析器
-func Init() error {
+func Init1() error {
 	// NFT Transfer事件ABI
 	nftABI := `[    {
 		"anonymous": false,

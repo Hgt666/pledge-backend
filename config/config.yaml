@@ -3,13 +3,13 @@ app:
   port: 8088
 
 mysql:
-  dsn: "root:rootpasswd@tcp(127.0.0.1:3307)/nftMarket?charset=utf8mb4&parseTime=True&loc=Local"
+  dsn: "root:rootpasswd@tcp(127.0.0.1:3307)/pledge?charset=utf8mb4&parseTime=True&loc=Local"
 
 chain:
   rpc: "https://eth-sepolia.g.alchemy.com/v2/qYzNDoA70IIpPivi7CKE3"
   safe_block: 6
   scan_interval: 3
+  chain_id: 1
 
 contract:
-  nft: "0xC25E680C1480533FE69eAc43A8cF98c0a339eEaf"
-  market: "0xcEE5AA84032D4a53a0F9d2c33F36701c3eAD5895"
+  pledge: "0xa0c46D66F17D9F2feC0309881eFe607ea8BF251b"

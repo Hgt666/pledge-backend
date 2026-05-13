@@ -28,7 +28,7 @@ func GetName(client *ethclient.Client) (string, error) {
 	}
 
 	msg := ethereum.CallMsg{
-		To:   &config.NftContractAddr,
+		To:   &config.PledgeContractAddr,
 		Data: data,
 	}
 
@@ -47,7 +47,7 @@ func GetSymbol(client *ethclient.Client) (string, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), utils.RPCTimeout)
 	defer cancel()
 	data, _ := parsedABI.Pack("symbol")
-	msg := ethereum.CallMsg{To: &config.NftContractAddr, Data: data}
+	msg := ethereum.CallMsg{To: &config.PledgeContractAddr, Data: data}
 	res, err := client.CallContract(ctx, msg, nil)
 	if err != nil {
 		return "", err
@@ -62,7 +62,7 @@ func OwnerOf(client *ethclient.Client, tokenId *big.Int) (common.Address, error)
 	ctx, cancel := context.WithTimeout(context.Background(), utils.RPCTimeout)
 	defer cancel()
 	data, _ := parsedABI.Pack("ownerOf", tokenId)
-	msg := ethereum.CallMsg{To: &config.NftContractAddr, Data: data}
+	msg := ethereum.CallMsg{To: &config.PledgeContractAddr, Data: data}
 	res, err := client.CallContract(ctx, msg, nil)
 	if err != nil {
 		return common.Address{}, err
@@ -77,7 +77,7 @@ func BalanceOf(client *ethclient.Client, owner common.Address) (*big.Int, error)
 	ctx, cancel := context.WithTimeout(context.Background(), utils.RPCTimeout)
 	defer cancel()
 	data, _ := parsedABI.Pack("balanceOf", owner)
-	msg := ethereum.CallMsg{To: &config.NftContractAddr, Data: data}
+	msg := ethereum.CallMsg{To: &config.PledgeContractAddr, Data: data}
 	res, err := client.CallContract(ctx, msg, nil)
 	if err != nil {
 		return nil, err

@@ -28,25 +28,24 @@ type Chain struct {
 	RPC          string `yaml:"rpc"`
 	SafeBlock    uint64 `yaml:"safe_block"`
 	ScanInterval int    `yaml:"scan_interval"`
+	ChainID      uint64  `yaml:"chain_id"`
 }
 
 type Contract struct {
-	NFT    string `yaml:"nft"`
-	Market string `yaml:"market"`
+	Pledge string `yaml:"pledge"`
 }
 
 // 全局配置变量
 var GlobalConfig *AppConfig
 var (
-	NftContractAddr    common.Address
-	MarketContractAddr common.Address
+	PledgeContractAddr common.Address
 )
 
 // InitViper 初始化viper加载yaml配置
 func InitViper() {
 	viper.SetConfigName("config")
 	viper.SetConfigType("yaml")
-	viper.AddConfigPath("../../config")
+	viper.AddConfigPath("./config")
 
 	// 读取配置文件
 	if err := viper.ReadInConfig(); err != nil {
@@ -61,6 +60,5 @@ func InitViper() {
 	GlobalConfig = &cfg
 
 	// 初始化合约地址
-	NftContractAddr = common.HexToAddress(cfg.Contract.NFT)
-	MarketContractAddr = common.HexToAddress(cfg.Contract.Market)
+	PledgeContractAddr = common.HexToAddress(cfg.Contract.Pledge)
 }
