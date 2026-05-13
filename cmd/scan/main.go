@@ -8,6 +8,7 @@ import (
 	"easy-swap/internal/scan"
 	"easy-swap/logger"
 	task "easy-swap/tasks"
+	"easy-swap/utils"
 	"os"
 	"os/signal"
 	"syscall"
@@ -24,6 +25,9 @@ func main() {
 	// 初始化配置
 	config.InitViper()
 	dal.InitDB()
+
+	// 初始化redis
+	utils.InitRedis("127.0.0.1:6379","",0)
 
 	// 初始化 abi解析器
 	if err := parser.Init();err != nil {

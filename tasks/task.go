@@ -2,6 +2,7 @@ package task
 
 import (
 	"easy-swap/dal"
+	"easy-swap/utils"
 	// "easy-swap/dao"
 	"easy-swap/model"
 	"fmt"
@@ -17,7 +18,8 @@ func StartCalcJob() {
 	// 每分钟执行一次
 	err := c.AddFunc("* * * * *", func() {
 		fmt.Println("【定时任务】开始计算利息、LTV、健康度...")
-		CalcAllLoanInterest()
+		testLock()
+		// CalcAllLoanInterest()
 		// CalcAllDepositInterest()
 		// CalcHealthAndLTV()
 		fmt.Println("【定时任务】计算完成")
@@ -112,4 +114,17 @@ func CalcHealthAndLTV() {
 			dal.DB.Model(&loan).Update("status", 3)
 		}
 	}
+}
+
+
+
+func testLock() {
+	lock := utils.NewRedisLock(utils.Rdb, "lock:test", time.Second*30)
+	ok,_ := lock.Lock()
+	if !ok {
+		fmt.Println("获取锁失败")
+		return
+	}
+	fmt.Println("获取锁成功")
+	defer lock.Unlock()
 }
